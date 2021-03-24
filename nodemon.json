@@ -1,0 +1,5 @@
+{
+    "ignore": ["node_modules", ".next", "src/frontend"],
+    "watch": ["src/api/**/*", "index.js", "config/**/*"],
+    "ext": "js json hjson"
+}
