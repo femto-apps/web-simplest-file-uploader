@@ -20,7 +20,7 @@ export function setupPassport() {
     passport.use(new GithubStrategy({
         clientID: config.github.clientId,
         clientSecret: config.github.clientSecret,
-        callbackURL: "http://127.0.0.1:8080/auth/github/callback"
+        callbackURL: config.github.callbackUrl
     },
         async function (accessToken, refreshToken, profile, cb) {
             const { id, username } = profile
