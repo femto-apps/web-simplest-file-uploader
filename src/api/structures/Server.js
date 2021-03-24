@@ -35,6 +35,8 @@ export default class Server {
         setupPassport()
         await this.registerRoutes()
 
+        jetpack.dir(config.storage.disk.path)
+
         this.server.get('*', async (req, res, next) => {
             return this.nextHandle(req, res, next)
         })
