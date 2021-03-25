@@ -1,5 +1,6 @@
 import Route from '../../structures/Route.js'
-import { itemFromUser, redactItem } from '../../modules/item.js'
+import { referenceFromUser, redactReference } from '../../modules/reference.js'
+import { redactFile } from '../../modules/file.js'
 
 export default class uploadsGet extends Route {
     constructor() {
@@ -9,10 +10,16 @@ export default class uploadsGet extends Route {
     }
 
     async handler(req, res) {
-        const items = await itemFromUser({ id: req.user.id })
+        const references = await referenceFromUser({ id: req.user.id })
 
         res.json({
-            items: items.map(item => redactItem(item))
+            items: await Promise.all(references.map(async reference => {
+                const item = await reference.getItem()
+                return {
+                    ...redactFile(item),
+                    ...redactReference(reference)
+                }
+            }))
         })
     }
 }

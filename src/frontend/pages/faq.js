@@ -61,6 +61,10 @@ function FAQ() {
                             <li>Person A drops files onto the uploader and they get transferred to person B.</li>
                         </ol>
                         <p>There are limitations, specifically, person B won't be able to download the file at a later point in time.  However, the transfer speed will likely be significantly increased.</p>
+
+                        <hr />
+
+                        <p>Dimaguy requested I put <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">this</a> at the end of the FAQ.</p>
                     </div>
                 </div>
             </DashboardLayout>

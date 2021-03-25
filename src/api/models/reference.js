@@ -8,16 +8,23 @@ export default (sequelize, Sequelize) => {
             unique: true,
             allowNull: false
         },
-        // user: {
-        //     type: DataTypes.
-        //     unique: false,
-        //     allowNull: false
-        // }
+        views: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
+        type: {
+            type: DataTypes.ENUM('FILE', 'URL'),
+            allowNull: false
+        },
+        ip: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        ItemId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        }
     })
-
-    Reference.prototype.getItem = function () {
-        console.log(this)
-    }
 
     return Reference;
 }

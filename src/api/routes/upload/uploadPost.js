@@ -8,7 +8,8 @@ import Utils from '../../utils/Utils.js'
 
 import { createAvailableShort } from '../../modules/short.js'
 import { scanFromStream } from '../../modules/scan.js'
-import { createItem } from '../../modules/item.js'
+import { createReference } from '../../modules/reference.js'
+import { createFile } from '../../modules/file.js'
 
 const diskStorage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -58,12 +59,17 @@ export default class uploadPost extends Route {
         }
 
         const short = await createAvailableShort()
-        const item = await createItem({
-            short,
+        const item = await createFile({
             name: req.file.originalname,
             mime: req.file.mimetype,
             size: req.file.size,
             store: req.file.path,
+        })
+        const reference = await createReference({
+            short,
+            item,
+            type: 'FILE',
+            ip: 'not implemented',
             user: req.user
         })
 

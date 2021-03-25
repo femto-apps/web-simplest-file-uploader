@@ -1,4 +1,4 @@
-import { itemFromShort } from '../modules/item.js'
+import { itemFromShort } from '../modules/reference.js'
 import Route from '../structures/Route.js'
 import contentDisposition from 'content-disposition'
 import sendRanges from 'send-ranges'
@@ -31,7 +31,7 @@ export default class fileGet extends Route {
             return next()
         }
 
-        const item = await itemFromShort({ short })
+        const { item, reference } = await itemFromShort({ short })
 
         if (!item) {
             return next()

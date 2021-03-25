@@ -1,6 +1,6 @@
 import database from '../models/index.js'
 
-const { Item } = database
+const { Reference } = database
 
 const alphabet = '23456789abcdefghijkmnpqrstuvwxyz'
 
@@ -18,7 +18,7 @@ export async function createAvailableShort() {
     while (true) {
         const short = createRandomShort({ length: 4 })
 
-        if (await Item.findOne({ where: { short } })) {
+        if (await Reference.findOne({ where: { short } })) {
             continue
         }
 

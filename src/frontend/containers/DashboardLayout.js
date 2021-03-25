@@ -22,6 +22,7 @@ function DashboardLayout({ children, active }) {
                                 <li><Link href="/"><a className={active === 'frontpage' ? 'is-active' : ''}>Frontpage</a></Link></li>
                                 <li><Link href="/faq"><a className={active === 'faq' ? 'is-active' : ''}>FAQ</a></Link></li>
                                 <li><Link href="/contact"><a className={active === 'contact' ? 'is-active' : ''}>Contact Us</a></Link></li>
+                                <li><Link href="/methods"><a className={active === 'methods' ? 'is-active' : ''}>Ways to Upload</a></Link></li>
                             </ul>
                             {
                                 !loading && user ? <>
@@ -31,6 +32,7 @@ function DashboardLayout({ children, active }) {
                                     <ul className="menu-list">
                                         <li><Link href="/uploads"><a className={active === 'uploads' ? 'is-active' : ''}>List Uploads</a></Link></li>
                                     </ul>
+
                                     <p className="menu-label">
                                         Account
   </p>
