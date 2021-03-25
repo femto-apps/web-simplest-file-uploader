@@ -4,6 +4,7 @@ import config from 'config';
 
 import initItem from './item.js'
 import initUser from './user.js'
+import initReference from './reference.js'
 
 const { Umzug, SequelizeStorage } = umzugImport
 const sequelize = new Sequelize({
@@ -14,10 +15,13 @@ const sequelize = new Sequelize({
 const models = {
     Item: initItem(sequelize),
     User: initUser(sequelize),
+    Reference: initReference(sequelize)
 }
 
 models.Item.belongsTo(models.User)
 models.User.hasMany(models.Item)
+// models.Reference.belongsTo(models.User)
+// models.User.hasMany(models.Reference)
 
 export async function upMigrations() {
     const umzug = new Umzug({

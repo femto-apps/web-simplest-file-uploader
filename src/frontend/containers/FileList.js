@@ -3,6 +3,7 @@ import Columns from "../components/Columns"
 
 import filesize from "filesize"
 import Link from "next/link"
+import errors from "../data/errors"
 
 function File({ file, key, forceUpdate }) {
     let error
@@ -10,7 +11,7 @@ function File({ file, key, forceUpdate }) {
         error = (
             <div className="notification is-danger" style={{ padding: '0.5rem 2.5rem 0.5rem 1.5rem', marginBottom: '0.5rem', marginTop: '1rem' }}>
                 <button className="delete" onClick={() => { file.error = ''; forceUpdate() }}></button>
-                {file.error}
+                {errors(file.error.message)}
             </div>
         )
     }

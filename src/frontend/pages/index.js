@@ -10,7 +10,7 @@ import Button from '../components/Button'
 import useWarnIfUnsavedChanges from '../containers/WarnIfUnsavedChanges'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuestionCircle, faChartArea, faTachometerAlt, faFileUpload, faQuoteLeft, faLink, faCogs } from '@fortawesome/free-solid-svg-icons'
+import { faQuestionCircle, faChartArea, faTachometerAlt, faFileUpload, faQuoteLeft, faLink, faCogs, faUserFriends } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { useDropzone } from 'react-dropzone'
 
@@ -18,6 +18,7 @@ import Link from 'next/link'
 import FilesTab from '../containers/FilesTab'
 import TextTab from '../containers/TextTab'
 import ShortenTab from '../containers/ShortenTab'
+import PeerTab from '../containers/PeerTab'
 import ConfigTab from '../containers/ConfigTab'
 import HeroContainer from '../containers/HeroContainer'
 import FileList from '../containers/FileList'
@@ -76,8 +77,6 @@ function Home(props) {
                     file.short = req.data.short
                     forceUpdate()
                 }).catch(err => {
-                    console.log('ran into an error')
-
                     file.error = err
                     forceUpdate()
                 })
@@ -112,6 +111,7 @@ function Home(props) {
                                 { text: 'Files', icon: faFileUpload },
                                 { text: 'Text', icon: faQuoteLeft },
                                 { text: 'Shorten', icon: faLink },
+                                { text: 'P2P', icon: faUserFriends },
                                 { text: 'Config', icon: faCogs }
                             ]} />
                             <div style={{ paddingBottom: '1.5rem' }}>
@@ -119,6 +119,7 @@ function Home(props) {
                                 {uploadTypeTab === 'Text' && <TextTab uploadFile={uploadFiles} />}
                                 {uploadTypeTab === 'Shorten' && <ShortenTab />}
                                 {uploadTypeTab === 'Config' && <ConfigTab />}
+                                {uploadTypeTab === 'P2P' && <PeerTab />}
                                 <FileList files={files} forceUpdate={forceUpdate} />
                             </div>
                             <Links />

@@ -8,6 +8,12 @@ import Database from '../models/index.js'
 
 const { sequelize } = Database
 
+const SequelizeStore = SequelizeSessionStore(session.Store)
+
+const store = new SequelizeStore({
+    db: sequelize
+})
+
 export default class Route {
     constructor(path, method, options) {
         if (!path) throw new Error('Every route needs a URL associated with it.')
@@ -22,12 +28,6 @@ export default class Route {
             enableSession: false,
             middleware: []
         }, options)
-
-        const SequelizeStore = SequelizeSessionStore(session.Store)
-
-        const store = new SequelizeStore({
-            db: sequelize
-        })
 
         this.middleware = []
 

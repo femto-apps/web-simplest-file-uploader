@@ -51,6 +51,16 @@ function FAQ() {
 
                         <b>How stable is this service?</b>
                         <p>It varies.  Over the life time of this service being public we have had an uptime of 99.4%.  0.4% of this downtime was intentional (v1 -> v2 migration) with 0.2% being unplanned.  We expect our uptime to increase over time as bugs are fixed.  As more people use the service we are taking further steps to improve stability.</p>
+
+                        <br />
+                        <b>What is P2P?</b>
+                        <p>P2P stands for 'Peer to Peer'.  It's a way of sending files directly to an individual, without any data passing through the host. Typically:</p>
+                        <ol>
+                            <li>Person A wishes to send a file to person B, so generates a unique code.</li>
+                            <li>Person B enters this code into the tab.</li>
+                            <li>Person A drops files onto the uploader and they get transferred to person B.</li>
+                        </ol>
+                        <p>There are limitations, specifically, person B won't be able to download the file at a later point in time.  However, the transfer speed will likely be significantly increased.</p>
                     </div>
                 </div>
             </DashboardLayout>
