@@ -117,7 +117,7 @@ function Home(props) {
                             <div style={{ paddingBottom: '1.5rem' }}>
                                 {uploadTypeTab === 'Files' && <FilesTab onClick={open} />}
                                 {uploadTypeTab === 'Text' && <TextTab uploadFile={uploadFiles} />}
-                                {uploadTypeTab === 'Shorten' && <ShortenTab setFiles={setFiles} forceUpdate={forceUpdate} />}
+                                {uploadTypeTab === 'Shorten' && <ShortenTab files={files} setFiles={setFiles} forceUpdate={forceUpdate} />}
                                 {uploadTypeTab === 'Config' && <ConfigTab />}
                                 {uploadTypeTab === 'P2P' && <PeerTab />}
                                 <FileList files={files} forceUpdate={forceUpdate} />
