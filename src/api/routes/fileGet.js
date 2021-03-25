@@ -37,6 +37,15 @@ export default class fileGet extends Route {
             return next()
         }
 
+        switch (reference.type) {
+            case 'FILE':
+                break
+            case 'URL':
+                return res.redirect(item.url)
+            default:
+                throw new Error('Type not implemented yet: ' + reference.type)
+        }
+
         if (item.virus) {
             return res.send("This file was detected as a virus and removed.")
         }

@@ -2,10 +2,10 @@ import Sequelize from 'sequelize';
 import umzugImport from 'umzug'
 import config from 'config';
 
-// import initItem from './item.js'
 import initUser from './user.js'
 import initReference from './reference.js'
 import initFile from './file.js'
+import initUrl from './url.js'
 
 const { Umzug, SequelizeStorage } = umzugImport
 const sequelize = new Sequelize({
@@ -16,7 +16,8 @@ const sequelize = new Sequelize({
 const models = {
     User: initUser(sequelize),
     Reference: initReference(sequelize),
-    File: initFile(sequelize)
+    File: initFile(sequelize),
+    Url: initUrl(sequelize)
 }
 
 models.Reference.belongsTo(models.User)
@@ -26,6 +27,8 @@ models.Reference.prototype.getItem = function () {
     switch (this.type) {
         case 'FILE':
             return models.File.findOne({ where: { id: this.ItemId } })
+        case 'URL':
+            return models.Url.findOne({ where: { id: this.ItemId } })
         default:
             throw new Error('Unexpected type: ' + this.type)
     }
