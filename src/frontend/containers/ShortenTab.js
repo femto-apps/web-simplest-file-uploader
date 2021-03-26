@@ -5,10 +5,12 @@ import { useState } from "react";
 import validUrl from 'valid-url';
 import axios from 'axios';
 import normalizeUrl from 'normalize-url';
+import useSettings from "../data/useSettings";
 
 function ShortenTab({ files, setFiles, forceUpdate }) {
     const [error, setError] = useState('')
     const [value, setValue] = useState('')
+    const [config, setConfig] = useSettings()
 
     const shorten = async () => {
         setError('')
@@ -42,7 +44,8 @@ function ShortenTab({ files, setFiles, forceUpdate }) {
         setFiles((array) => [...array, file])
 
         const { data } = await axios.post('/upload/url', {
-            url
+            url,
+            shortLength: config.shortLength
         })
 
         file.short = data.short

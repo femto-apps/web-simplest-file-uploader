@@ -4,7 +4,7 @@ import Route from '../../structures/Route.js'
 import Utils from '../../utils/Utils.js'
 
 import { createUrl } from '../../modules/url.js'
-import { createAvailableShort } from '../../modules/short.js'
+import { createAvailableShort, limitShortLength } from '../../modules/short.js'
 import { createReference } from '../../modules/reference.js'
 
 export default class uploadPost extends Route {
@@ -19,9 +19,9 @@ export default class uploadPost extends Route {
             return res.status(401).json({ message: 'Not authorized to use this resource' })
         }
 
-        console.log(req.body.url)
 
-        const short = await createAvailableShort()
+        const shortLength = limitShortLength(req.body.shortLength)
+        const short = await createAvailableShort({ shortLength })
         const item = await createUrl({
             url: req.body.url
         })

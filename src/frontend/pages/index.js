@@ -26,6 +26,7 @@ import Links from '../containers/Links'
 import FileState from '../modules/FileState'
 
 import axios from 'axios';
+import useSettings from '../data/useSettings'
 
 function expiryOutputName(val) {
     const expiry = ['1 hour', '3 hours', '6 hours', '1 day', '3 days', '1 week', '2 weeks', '1 month', '3 months', '6 months', 'never']
@@ -40,6 +41,7 @@ function useForceUpdate() {
 function Home(props) {
     const [uploadTypeTab, setUploadTypeTab] = useState('Files')
     const [warnOnChangePage, setWarnOnChangePage] = useState(false)
+    const [config, setConfig] = useSettings()
 
     const [files, setFiles] = useState([])
     const forceUpdate = useForceUpdate()
@@ -61,6 +63,7 @@ function Home(props) {
             console.log('file', file)
 
             data.append('upload', file)
+            data.append('shortLength', config.shortLength)
 
             console.log('made new form data')
 

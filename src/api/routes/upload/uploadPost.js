@@ -6,7 +6,7 @@ import multer from 'multer'
 import Route from '../../structures/Route.js'
 import Utils from '../../utils/Utils.js'
 
-import { createAvailableShort } from '../../modules/short.js'
+import { createAvailableShort, limitShortLength } from '../../modules/short.js'
 import { scanFromStream } from '../../modules/scan.js'
 import { createReference } from '../../modules/reference.js'
 import { createFile } from '../../modules/file.js'
@@ -58,7 +58,8 @@ export default class uploadPost extends Route {
             return res.status(415).send("Invalid file.")
         }
 
-        const short = await createAvailableShort()
+        const shortLength = limitShortLength(req.body.shortLength)
+        const short = await createAvailableShort({ shortLength })
         const item = await createFile({
             name: req.file.originalname,
             mime: req.file.mimetype,

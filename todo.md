@@ -1,10 +1,11 @@
-1. Implement URL shortening
+1. Implement URL shortening (DONE)
 2. Implement P2P sharing
-3. Make the shortened length configurable
+3. Make the shortened length configurable (DONE)
 4. Implement stats
 5. Add a page describing methods of uploading.
 6. Add a grid view of 'uploads'
 7. Implement contact us form.
 8. Add a README on how to set it up.
+9. Setup one line installation
 
-9. Implement way of transferring data from v2 femto to this. (or maybe v1 as well???)
+10. Implement way of transferring data from v2 femto to this. (or maybe v1 as well???)

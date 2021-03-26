@@ -14,9 +14,17 @@ export function createRandomShort({ length = 4 }) {
     return short
 }
 
-export async function createAvailableShort() {
+export function limitShortLength(shortLength = 4) {
+    if (shortLength < 4 || shortLength > 64) {
+        shortLength = 4
+    }
+
+    return shortLength
+}
+
+export async function createAvailableShort({ shortLength }) {
     while (true) {
-        const short = createRandomShort({ length: 4 })
+        const short = createRandomShort({ length: shortLength })
 
         if (await Reference.findOne({ where: { short } })) {
             continue
