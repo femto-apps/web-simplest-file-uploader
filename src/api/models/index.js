@@ -6,6 +6,7 @@ import initUser from './user.js'
 import initReference from './reference.js'
 import initFile from './file.js'
 import initUrl from './url.js'
+import initContact from './contact.js'
 
 const { Umzug, SequelizeStorage } = umzugImport
 const sequelize = new Sequelize({
@@ -17,7 +18,8 @@ const models = {
     User: initUser(sequelize),
     Reference: initReference(sequelize),
     File: initFile(sequelize),
-    Url: initUrl(sequelize)
+    Url: initUrl(sequelize),
+    Contact: initContact(sequelize),
 }
 
 models.Reference.belongsTo(models.User)

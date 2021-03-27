@@ -18,7 +18,7 @@ function PeerTab({ }) {
                 </p>
             </div>
             <div>
-                <div class="divider">OR</div>
+                <div className="divider">OR</div>
             </div>
             <label className="label has-text-left">Enter existing code...</label>
             <div className="control has-icons-right is-expanded">

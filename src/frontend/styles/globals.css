@@ -28,7 +28,8 @@ input[type='range'].slider:not([orient='vertical']).has-output-tooltip
 
 textarea,
 input[type='text'],
-input[type='email'] {
+input[type='email'],
+.select select {
   background-color: rgb(24, 26, 27) !important;
   border-color: rgb(109, 102, 90);
   color: rgb(204, 199, 192) !important;

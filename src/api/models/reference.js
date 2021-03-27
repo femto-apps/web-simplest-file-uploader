@@ -18,7 +18,7 @@ export default (sequelize, Sequelize) => {
         },
         ip: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         ItemId: {
             type: DataTypes.INTEGER,

@@ -37,7 +37,7 @@ function ConfigTab({ }) {
     return (
         <>
             <label className="label has-text-left">Focus</label>
-            <div class="tabs is-toggle is-toggle-rounded">
+            <div className="tabs is-toggle is-toggle-rounded">
                 <ul>
                     <li className={focusTab === 'security' ? "is-active" : ""} onClick={() => setFocus('security')}>
                         <a>
