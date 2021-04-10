@@ -41,6 +41,7 @@
     "normalize-url": "^5.3.0",
     "passport": "^0.4.1",
     "passport-github": "^1.1.0",
+    "pureimage": "^0.3.2",
     "react": "^17.0.1",
     "react-copy-to-clipboard": "^5.0.3",
     "react-dom": "^17.0.1",

@@ -33,6 +33,8 @@ export default class fileGet extends Route {
 
         const { item, reference } = await itemFromShort({ short })
 
+        console.log(reference)
+
         if (!item) {
             return next()
         }
@@ -67,8 +69,11 @@ export default class fileGet extends Route {
         }
 
         req.item = item
+        req.reference = reference
 
         sendRange(req, res, () => {
+            req.reference.increment('views')
+
             res.set('Content-Length', item.size)
             res.set('Accept-Ranges', 'bytes')
             res.writeHead(200)

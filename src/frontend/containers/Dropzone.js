@@ -76,7 +76,7 @@ function DropzoneWrapper({ onFilesUpload, children }) {
                                 <a title="Stats" style={{ display: 'inline-block', width: '2em' }}>
                                     <FontAwesomeIcon style={{ fontSize: '1.25em' }} icon={faChartArea} />
                                 </a>
-                                <a href="https://github.com/femto-apps/web-simple-file-uploader" title="GitHub" style={{ display: 'inline-block', width: '2em' }}>
+                                <a href="https://github.com/femto-apps/web-simplest-file-uploader" title="GitHub" style={{ display: 'inline-block', width: '2em' }}>
                                     <FontAwesomeIcon style={{ fontSize: '1.25em' }} icon={faGithub} />
                                 </a>
                                 <a title="Dashboard" style={{ display: 'inline-block', width: '2em' }}>

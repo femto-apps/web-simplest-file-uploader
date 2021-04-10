@@ -2,6 +2,8 @@
     // Branding for the site
     name: {
         title: Femto Uploader
+        // don't put any trailing slashs
+        url: http://localhost:8080
     }
 
     // What port should the service run on?

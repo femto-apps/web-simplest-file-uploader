@@ -64,6 +64,7 @@ function Home(props) {
 
             data.append('upload', file)
             data.append('shortLength', config.shortLength)
+            data.append('expirationTime', config.expirationTime)
 
             console.log('made new form data')
 

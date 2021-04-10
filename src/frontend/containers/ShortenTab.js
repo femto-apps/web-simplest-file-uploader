@@ -45,7 +45,8 @@ function ShortenTab({ files, setFiles, forceUpdate }) {
 
         const { data } = await axios.post('/upload/url', {
             url,
-            shortLength: config.shortLength
+            shortLength: config.shortLength,
+            expirationTime: config.expirationTime
         })
 
         file.short = data.short

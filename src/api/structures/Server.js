@@ -6,6 +6,7 @@ import next from 'next'
 import http from 'http'
 import config from 'config'
 import jetpack from 'fs-jetpack'
+import path from 'path'
 
 import Utils from '../utils/Utils.js'
 import { setupPassport } from '../modules/passport.js'
@@ -36,6 +37,7 @@ export default class Server {
         await this.registerRoutes()
 
         jetpack.dir(config.storage.disk.path)
+        jetpack.dir(path.join(config.storage.disk.path, 'thumbs'))
 
         this.server.get('*', async (req, res, next) => {
             return this.nextHandle(req, res, next)

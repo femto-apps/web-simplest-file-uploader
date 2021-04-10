@@ -11,15 +11,13 @@ import useSettings from '../data/useSettings'
 
 function ConfigTab({ }) {
     const [config, setConfig] = useSettings()
-    const [focusTab, setFocusTab] = useState('usability')
-
 
     const setSetting = (setting, value) => {
         setConfig(currentConfig => ({ ...currentConfig, [setting]: value }))
     }
 
     const setFocus = focus => {
-        setFocusTab(focus)
+        setSetting('focus', focus)
 
         if (focus === 'custom') {
             return
@@ -27,10 +25,12 @@ function ConfigTab({ }) {
 
         if (focus === 'security') {
             setSetting('shortLength', 14)
+            setSetting('expirationTime', 604800)
         }
 
         if (focus === 'usability') {
             setSetting('shortLength', 4)
+            setSetting('expirationTime', 0)
         }
     }
 
@@ -39,19 +39,19 @@ function ConfigTab({ }) {
             <label className="label has-text-left">Focus</label>
             <div className="tabs is-toggle is-toggle-rounded">
                 <ul>
-                    <li className={focusTab === 'security' ? "is-active" : ""} onClick={() => setFocus('security')}>
+                    <li className={config.focus === 'security' ? "is-active" : ""} onClick={() => setFocus('security')}>
                         <a>
                             <span className="icon is-small"><FontAwesomeIcon icon={faShieldAlt} /></span>
                             <span>Security</span>
                         </a>
                     </li>
-                    <li className={focusTab === 'usability' ? "is-active" : ""} onClick={() => setFocus('usability')}>
+                    <li className={config.focus === 'usability' ? "is-active" : ""} onClick={() => setFocus('usability')}>
                         <a>
                             <span className="icon is-small"><FontAwesomeIcon icon={faBed} /></span>
                             <span>Usability</span>
                         </a>
                     </li>
-                    <li className={focusTab === 'custom' ? "is-active" : ""} onClick={() => setFocus('custom')}>
+                    <li className={config.focus === 'custom' ? "is-active" : ""} onClick={() => setFocus('custom')}>
                         <a>
                             <span className="icon is-small"><FontAwesomeIcon icon={faCog} /></span>
                             <span>Custom</span>
@@ -66,7 +66,7 @@ function ConfigTab({ }) {
                     <input type="text" value={config.password} onChange={e => setSetting('password', e.target.value)} className={`input`} />
                 </div>
                 <p className="control">
-                    <Button className="is-danger" onClick={() => setPassword('')}>Clear</Button>
+                    <Button className="is-danger" onClick={() => setSetting('password', '')}>Clear</Button>
                 </p>
             </div>
 
@@ -76,6 +76,28 @@ function ConfigTab({ }) {
                     <input type="text" value={config.shortLength} onChange={e => setSetting('shortLength', e.target.value)} className={`input`} />
                 </div>
             </div>
+
+            <label className="label has-text-left">Expiration Time</label>
+            <div className="field select" style={{ width: '100%', marginBottom: '0px' }}>
+                <select style={{ width: '100%' }} value={config.expirationTime} onChange={e => setSetting('expirationTime', Number(e.target.value))}>
+                    <option value="">Permanent</option>
+                    <option value="900">15 minutes</option>
+                    <option value="1800">30 minutes</option>
+                    <option value="3600">1 hour</option>
+                    <option value="21600">6 hours</option>
+                    <option value="43200">12 hours</option>
+                    <option value="86400">1 day</option>
+                    <option value="172800">2 days</option>
+                    <option value="259200">3 days</option>
+                    <option value="345600">4 days</option>
+                    <option value="432000">5 days</option>
+                    <option value="518400">6 days</option>
+                    <option value="604800">7 days</option>
+                    <option value="1209600">14 days</option>
+                    <option value="2592000">30 days</option>
+                </select>
+            </div>
+            <p class="help">The file may expire earlier, if the server is configured with a maximum time.</p>
         </>
     )
 }

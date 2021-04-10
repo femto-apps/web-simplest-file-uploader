@@ -10,6 +10,9 @@ import { createAvailableShort, limitShortLength } from '../../modules/short.js'
 import { scanFromStream } from '../../modules/scan.js'
 import { createReference } from '../../modules/reference.js'
 import { createFile } from '../../modules/file.js'
+import Database from '../../models/index.js'
+
+const { User } = Database
 
 const diskStorage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -25,11 +28,33 @@ const fileMulter = multer({
     limits: {
         fileSize: config.limits.maxSize,
     },
-    fileFilter(req, file, cb) {
+    async fileFilter(req, file, cb) {
+        if (req.body.apikey) {
+            const user = await User.findOne({
+                where: {
+                    apikey: req.body.apikey
+                }
+            })
+
+            if (!user) {
+                return cb('invalid api key')
+            }
+
+            req.user = user
+        }
+
+        if (!req.user && !config.publicUpload) {
+            return cb('Not authorized to use this resource')
+        }
+
         const extension = Utils.getFileExtension(file.originalname)
 
         if (Utils.isExtensionBlocked(extension)) {
             return cb(`${extension ? `.${extension} files` : `Files with no extension`} are not permitted`)
+        }
+
+        if (Utils.isMimeBlocked(file.mimetype)) {
+            return cb(`${file.mimetype} files are not permitted`)
         }
 
         return cb(null, true)
@@ -39,15 +64,12 @@ const fileMulter = multer({
 export default class uploadPost extends Route {
     constructor() {
         super(['/upload'], 'post', {
-            allowApiKey: true
+            allowApiKey: true,
+            allowAnonymous: true,
         })
     }
 
     async handler(req, res) {
-        if (!req.user && !config.publicUpload) {
-            return res.status(401).json({ message: 'Not authorized to use this resource' })
-        }
-
         const error = await new Promise(resolve => fileMulter(req, res, err => resolve(err)))
 
         if (error) {
@@ -58,6 +80,7 @@ export default class uploadPost extends Route {
             return res.status(415).send("Invalid file.")
         }
 
+        const expiry = Utils.normaliseExpiration(req.body.expirationTime)
         const shortLength = limitShortLength(req.body.shortLength)
         const short = await createAvailableShort({ shortLength })
         const item = await createFile({
@@ -70,8 +93,9 @@ export default class uploadPost extends Route {
             short,
             item,
             type: 'FILE',
-            ip: 'not implemented',
-            user: req.user
+            ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+            user: req.user,
+            expiration: expiry
         })
 
         // virus total unfortunately has a max size.

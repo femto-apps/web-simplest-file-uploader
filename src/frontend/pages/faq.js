@@ -22,7 +22,7 @@ function FAQ() {
 
                     <div className="content">
                         <b>What is this?</b>
-                        <p>Femto Uploader is a free service that allows people to share files and shorten URLs.  It's meant to be 'no fuss' with no invasive tracking.  The source code is openly available <a href="https://github.com/femto-apps/web-simple-file-uploader">here.</a></p>
+                        <p>Femto Uploader is a free service that allows people to share files and shorten URLs.  It's meant to be 'no fuss' with no invasive tracking.  The source code is openly available <a href="https://github.com/femto-apps/web-simplest-file-uploader">here.</a></p>
 
                         <br />
 

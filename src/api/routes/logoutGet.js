@@ -9,6 +9,7 @@ export default class logoutGet extends Route {
 
     async handler(req, res) {
         req.logout()
+        res.clearCookie('connect.sid');
         res.clearCookie('user')
         res.redirect('/')
     }

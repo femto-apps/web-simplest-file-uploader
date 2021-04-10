@@ -6,7 +6,7 @@ import config from 'config'
 
 import Database from '../models/index.js'
 
-const { sequelize } = Database
+const { sequelize, User } = Database
 
 const SequelizeStore = SequelizeSessionStore(session.Store)
 
@@ -53,6 +53,29 @@ export default class Route {
         if (!this.options.bypassAuth) {
             this.middleware.push(passport.initialize())
             this.middleware.push(passport.session())
+
+            if (this.options.allowApiKey) {
+                this.middleware.push(async (req, res, next) => {
+                    const key = (req.query && req.query.apikey) || (req.body && req.body.apikey)
+
+                    if (!key) {
+                        return next()
+                    }
+
+                    const user = await User.findOne({
+                        where: {
+                            apikey: key
+                        }
+                    })
+
+                    if (!user) {
+                        return res.status(401).json({ error: 'invalid api key' })
+                    }
+
+                    req.user = user
+                    return next()
+                })
+            }
 
             if (!this.options.allowAnonymous) {
                 this.middleware.push((req, res, next) => {

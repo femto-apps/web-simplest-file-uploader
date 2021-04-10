@@ -2,11 +2,12 @@ import database from '../models/index.js'
 
 const { Reference } = database
 
-export async function createReference({ short, type, ip, item, user }) {
+export async function createReference({ short, type, ip, item, user, expiration }) {
     return Reference.create({
         short,
         type,
         ip,
+        expiration,
         ItemId: item && item.id,
         UserId: user && user.id
     })
@@ -36,5 +37,5 @@ export async function referenceFromUser({ id }) {
 }
 
 export function redactReference({ short, views, type }) {
-    return { short, views, type }
+    return { short, views, type, expiration }
 }

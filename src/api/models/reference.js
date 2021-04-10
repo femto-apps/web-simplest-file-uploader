@@ -1,4 +1,4 @@
-import sequelize from 'sequelize';
+import sequelize from 'sequelize'
 const { DataTypes } = sequelize;
 
 export default (sequelize, Sequelize) => {
@@ -18,6 +18,10 @@ export default (sequelize, Sequelize) => {
         },
         ip: {
             type: DataTypes.STRING,
+            allowNull: true
+        },
+        expiration: {
+            type: DataTypes.DATE,
             allowNull: true
         },
         ItemId: {

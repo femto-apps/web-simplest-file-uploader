@@ -8,5 +8,9 @@ const error = {
 }
 
 export default function errors(id) {
+    if (!(id in error)) {
+        return id
+    }
+
     return error[id].text
 }
