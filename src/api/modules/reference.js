@@ -36,6 +36,6 @@ export async function referenceFromUser({ id }) {
     })
 }
 
-export function redactReference({ short, views, type }) {
+export function redactReference({ short, views, type, expiration }) {
     return { short, views, type, expiration }
 }
