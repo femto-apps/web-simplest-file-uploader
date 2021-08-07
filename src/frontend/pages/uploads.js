@@ -30,8 +30,8 @@ function Uploads() {
                         Are you sure you wish to delete this item?
                 </section>
                     <footer className="modal-card-foot">
-                        <a className="button is-danger" onClick={() => { deleteUpload(checkRemove); setCheckRemove(false) }}>Delete</a>
-                        <a className="button" onClick={() => setCheckRemove(false)}>Cancel</a>
+                        <button className="button is-danger" onClick={() => { deleteUpload(checkRemove); setCheckRemove(false) }}>Delete</button>
+                        <button className="button" onClick={() => setCheckRemove(false)}>Cancel</button>
                     </footer>
                 </div>
             </div>
@@ -70,7 +70,7 @@ function Uploads() {
                             <tbody>
                                 {uploadsData.items.map((item, index) =>
                                     <tr key={index}>
-                                        <td><a href={`/${item.short}`}>{item.name}</a></td>
+                                        <td><a href={`/${item.short}`}>{item.name || item.url}</a></td>
                                         <td>{dayjs().to(item.createdAt)}</td>
                                         <td>{item.views || 0}</td>
                                         <td>

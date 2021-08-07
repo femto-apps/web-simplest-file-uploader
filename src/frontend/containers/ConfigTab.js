@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBed, faCog, faShieldAlt } from '@fortawesome/free-solid-svg-icons'
 import useStickyState from '../data/useStickyState.js'
 import useSettings from '../data/useSettings'
+import Router from 'next/router'
 
 function ConfigTab({ }) {
     const [config, setConfig] = useSettings()
@@ -32,6 +33,10 @@ function ConfigTab({ }) {
             setSetting('shortLength', 4)
             setSetting('expirationTime', 0)
         }
+    }
+
+    const reload = () => {
+        Router.reload(window.location.pathname);
     }
 
     return (
@@ -61,7 +66,7 @@ function ConfigTab({ }) {
             </div>
 
             <label className="label has-text-left">Password (Not Implemented)</label>
-            <div className="field has-addons">
+            <div className="field has-addons" style={{ marginBottom: '0px' }}>
                 <div className="control has-icons-right is-expanded">
                     <input type="text" value={config.password} onChange={e => setSetting('password', e.target.value)} className={`input`} />
                 </div>
@@ -69,6 +74,7 @@ function ConfigTab({ }) {
                     <Button className="is-danger" onClick={() => setSetting('password', '')}>Clear</Button>
                 </p>
             </div>
+            <p class="help" style={{ marginBottom: '10px' }}>Files are not encrypted.  Don't use this service for sensitive data.</p>
 
             <label className="label has-text-left">Short Length (4 - 64)</label>
             <div className="field has-addons">
@@ -98,6 +104,12 @@ function ConfigTab({ }) {
                 </select>
             </div>
             <p class="help">The file may expire earlier, if the server is configured with a maximum time.</p>
+
+            <br />
+
+            <button style={{ width: '100%' }} className="button is-info" onClick={reload}>
+                Apply Settings
+            </button>
         </>
     )
 }

@@ -8,6 +8,6 @@ export async function createUrl({ url }) {
     })
 }
 
-export function redactUrl({ url }) {
-    return { url }
+export function redactUrl({ url, createdAt }) {
+    return { url, createdAt }
 }

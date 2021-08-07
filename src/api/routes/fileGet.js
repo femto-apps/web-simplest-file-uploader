@@ -43,6 +43,7 @@ export default class fileGet extends Route {
             case 'FILE':
                 break
             case 'URL':
+                reference.increment('views')
                 return res.redirect(item.url)
             default:
                 throw new Error('Type not implemented yet: ' + reference.type)

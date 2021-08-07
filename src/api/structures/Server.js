@@ -11,6 +11,7 @@ import path from 'path'
 import Utils from '../utils/Utils.js'
 import { setupPassport } from '../modules/passport.js'
 import { upMigrations } from '../models/index.js'
+import { expireOldReferences } from '../modules/reference.js'
 
 export default class Server {
     constructor() {
@@ -35,6 +36,8 @@ export default class Server {
         await this.app.prepare()
         setupPassport()
         await this.registerRoutes()
+        setInterval(expireOldReferences, 1000 * 60 * 15)
+        expireOldReferences()
 
         jetpack.dir(config.storage.disk.path)
         jetpack.dir(path.join(config.storage.disk.path, 'thumbs'))

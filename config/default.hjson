@@ -7,7 +7,7 @@
     }
 
     // What port should the service run on?
-    port: 8080
+    port: 8081
 
     // Should people be able to register for an account?
     publicUpload: true

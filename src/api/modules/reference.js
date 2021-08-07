@@ -1,6 +1,7 @@
 import database from '../models/index.js'
+import { deleteItem } from './meta.js'
 
-const { Reference } = database
+const { Reference, Sequelize } = database
 
 export async function createReference({ short, type, ip, item, user, expiration }) {
     return Reference.create({
@@ -32,10 +33,29 @@ export async function itemFromShort({ short }) {
 
 export async function referenceFromUser({ id }) {
     return Reference.findAll({
-        where: { UserId: id }
+        where: { UserId: id },
+        order: [['createdAt', 'DESC']]
     })
 }
 
-export function redactReference({ short, views, type, expiration }) {
-    return { short, views, type, expiration }
+export function redactReference({ short, views, type, expiration, createdAt }) {
+    return { short, views, type, expiration, createdAt }
+}
+
+export async function expireOldReferences() {
+    const expiredReferences = await Reference.findAll({
+        where: {
+            expiration: {
+                [Sequelize.Op.lte]: new Date()
+            }
+        }
+    })
+
+    await Promise.all(expiredReferences.map(async reference => {
+        const item = await reference.getItem()
+
+        console.log('Expiring', reference.short)
+
+        await deleteItem(reference, item)
+    }))
 }
