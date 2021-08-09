@@ -28,7 +28,7 @@ function Uploads() {
                     </header>
                     <section className="modal-card-body">
                         Are you sure you wish to delete this item?
-                </section>
+                    </section>
                     <footer className="modal-card-foot">
                         <button className="button is-danger" onClick={() => { deleteUpload(checkRemove); setCheckRemove(false) }}>Delete</button>
                         <button className="button" onClick={() => setCheckRemove(false)}>Cancel</button>
