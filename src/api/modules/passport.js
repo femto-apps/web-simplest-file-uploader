@@ -4,7 +4,7 @@ import config from 'config'
 
 import database from '../models/index.js'
 
-const { User } = database
+const { User, Sequelize } = database
 
 export function setupPassport() {
     passport.serializeUser((user, done) => {
@@ -12,7 +12,7 @@ export function setupPassport() {
     })
 
     passport.deserializeUser((id, done) => {
-        User.findOne({ where: { id } })
+        User.findByPk(id)
             .then(user => done(null, user))
             .catch(err => done(err))
     })

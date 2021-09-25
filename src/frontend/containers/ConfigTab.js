@@ -65,7 +65,7 @@ function ConfigTab({ }) {
                 </ul>
             </div>
 
-            <label className="label has-text-left">Password (Not Implemented)</label>
+            {/* <label className="label has-text-left">Password (Not Implemented)</label>
             <div className="field has-addons" style={{ marginBottom: '0px' }}>
                 <div className="control has-icons-right is-expanded">
                     <input type="text" value={config.password} onChange={e => setSetting('password', e.target.value)} className={`input`} />
@@ -74,7 +74,7 @@ function ConfigTab({ }) {
                     <Button className="is-danger" onClick={() => setSetting('password', '')}>Clear</Button>
                 </p>
             </div>
-            <p class="help" style={{ marginBottom: '10px' }}>Files are not encrypted.  Don't use this service for sensitive data.</p>
+            <p class="help" style={{ marginBottom: '10px' }}>Files are not encrypted.  Don't use this service for sensitive data.</p> */}
 
             <label className="label has-text-left">Short Length (4 - 64)</label>
             <div className="field has-addons">

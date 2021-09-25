@@ -17,7 +17,7 @@ function DashboardLayout({ children, active }) {
                         <aside className="menu sidebar-nav">
                             <p className="menu-label">
                                 General
-  </p>
+                            </p>
                             <ul className="menu-list">
                                 <li><Link href="/"><a className={active === 'frontpage' ? 'is-active' : ''}>Frontpage</a></Link></li>
                                 <li><Link href="/faq"><a className={active === 'faq' ? 'is-active' : ''}>FAQ</a></Link></li>
@@ -28,14 +28,14 @@ function DashboardLayout({ children, active }) {
                                 !loading && user ? <>
                                     <p className="menu-label">
                                         Uploads
-  </p>
+                                    </p>
                                     <ul className="menu-list">
                                         <li><Link href="/uploads"><a className={active === 'uploads' ? 'is-active' : ''}>List Uploads</a></Link></li>
                                     </ul>
 
                                     <p className="menu-label">
                                         Account
-  </p>
+                                    </p>
                                     <ul className="menu-list">
                                         <li><Link href="/token"><a className={active === 'token' ? 'is-active' : ''}>Manage Token</a></Link></li>
                                         <li><Link href="/logout"><a>Logout</a></Link></li>
@@ -46,9 +46,9 @@ function DashboardLayout({ children, active }) {
                                 !loading && !user ? <>
                                     <p className="menu-label">
                                         Account
-  </p>
+                                    </p>
                                     <ul className="menu-list">
-                                        <li><Link href={`/auth/github?redirect=/${active}`}><a>Register</a></Link></li>
+                                        <li><Link href={`/register?redirect=/${active}`}><a>Register</a></Link></li>
                                         <li><Link href={`/auth/github?redirect=/${active}`}><a>Login</a></Link></li>
                                     </ul>
                                 </> : null

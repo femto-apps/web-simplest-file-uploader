@@ -12,12 +12,12 @@
   padding: 2rem 1.5rem 2rem;
 }
 
-input[type='range'].slider:not([orient='vertical']).has-output {
+input[type="range"].slider:not([orient="vertical"]).has-output {
   width: calc(100% - (6.2rem)) !important;
 }
 
-input[type='range'].slider:not([orient='vertical']).has-output + output,
-input[type='range'].slider:not([orient='vertical']).has-output-tooltip
+input[type="range"].slider:not([orient="vertical"]).has-output + output,
+input[type="range"].slider:not([orient="vertical"]).has-output-tooltip
   + output {
   width: 5rem !important;
 }
@@ -27,8 +27,9 @@ input[type='range'].slider:not([orient='vertical']).has-output-tooltip
 }
 
 textarea,
-input[type='text'],
-input[type='email'],
+input[type="text"],
+input[type="email"],
+input[type="password"],
 .select select {
   background-color: rgb(24, 26, 27) !important;
   border-color: rgb(109, 102, 90);
@@ -37,8 +38,8 @@ input[type='email'],
 }
 
 textarea::placeholder,
-input[type='text']::placeholder,
-input[type='email']::placeholder,
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
 ::placeholder {
   color: rgba(204, 199, 192, 0.3) !important;
 }

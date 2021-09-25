@@ -115,7 +115,7 @@ function Home(props) {
                                 { text: 'Files', icon: faFileUpload },
                                 { text: 'Text', icon: faQuoteLeft },
                                 { text: 'Shorten', icon: faLink },
-                                { text: 'P2P', icon: faUserFriends },
+                                // { text: 'P2P', icon: faUserFriends },
                                 { text: 'Config', icon: faCogs }
                             ]} />
                             <div style={{ paddingBottom: '1.5rem' }}>
