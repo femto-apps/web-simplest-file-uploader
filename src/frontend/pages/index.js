@@ -107,7 +107,7 @@ function Home(props) {
                 <input {...getInputProps()} />
                 <HeroContainer className="has-text-centered">
                     <h1 className="title">femto.pw</h1>
-                    <h2 className="subtitle">Upload and share files for free</h2>
+                    <h2 className="subtitle">Upload and share files for free.</h2>
                     <Columns>
                         <Column />
                         <Column>
