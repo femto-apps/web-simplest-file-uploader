@@ -33,7 +33,7 @@ export default class fileGet extends Route {
 
         const { item, reference } = await itemFromShort({ short })
 
-        console.log(reference)
+        // console.log(reference)
 
         if (!item) {
             return next()
