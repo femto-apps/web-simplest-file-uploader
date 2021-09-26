@@ -4,7 +4,7 @@ const { DataTypes } = Sequelize;
 async function up({ context: queryInterface }) {
   await queryInterface.createTable('Users', {
     id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
     },
@@ -12,6 +12,11 @@ async function up({ context: queryInterface }) {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false
+    },
+    githubId: {
+      type: DataTypes.INTEGER,
+      unique: true,
+      allowNull: true
     },
     apikey: {
       type: DataTypes.STRING,

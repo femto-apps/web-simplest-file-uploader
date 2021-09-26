@@ -13,18 +13,21 @@ export default (sequelize, Sequelize) => {
 
     const User = sequelize.define("User", {
         id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUIDV4,
             unique: true,
             allowNull: false,
             primaryKey: true,
-            defaultValue: () => {
-                return Math.floor(Math.random() * Math.pow(10, 12)) + Math.pow(10, 9)
-            }
+            defaultValue: DataTypes.UUIDV4
         },
         username: {
             type: DataTypes.STRING,
             unique: true,
             allowNull: false
+        },
+        githubId: {
+            type: DataTypes.INTEGER,
+            unique: true,
+            allowNull: true
         },
         email: {
             type: DataTypes.STRING,

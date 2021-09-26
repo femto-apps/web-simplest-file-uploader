@@ -18,11 +18,11 @@ export default class localLoginPost extends Route {
     }
 
     async handler(req, res) {
-        const { user_id, password } = req.body
+        const { userId, password } = req.body
 
         const user = await User.findOne({
             where: {
-                [Sequelize.Op.or]: [{ username: user_id }, { email: user_id }]
+                [Sequelize.Op.or]: [{ username: userId }, { email: userId }]
             }
         })
 

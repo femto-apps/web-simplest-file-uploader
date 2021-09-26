@@ -1,4 +1,3 @@
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Head from "next/head";
@@ -6,17 +5,12 @@ import { useRouter } from 'next/router'
 import Link from "next/link";
 import DashboardLayout from "../containers/DashboardLayout";
 import { useState } from "react";
-import Button from "../components/Button";
-import { registerUser } from "../data/useRegister";
+import { loginUser } from "../data/useLogin";
 
 import { toast } from 'react-toastify';
 
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { isSameOriginRedirect } from "../modules/utils";
-
-function Register() {
-    const [username, setUsername] = useState("")
-    const [email, setEmail] = useState("")
+function Login() {
+    const [userId, setUserId] = useState("")
     const [password, setPassword] = useState("")
 
     const notify = React.useCallback((type, message) => {
@@ -35,26 +29,11 @@ function Register() {
 
     const router = useRouter()
 
-    async function register() {
-        const { success, message } = await registerUser(username, email, password)
+    async function login() {
+        const { success, message } = await loginUser(userId, password)
 
         if (success) {
-            // return (
-            //     <div style="width:100%;z-index:99999;position:fixed;pointer-events:none;display:flex;flex-direction:column;padding:15px;right:0;top:0;text-align:right;align-items:flex-end;">
-            //         <div class="notification is-success animate__animated animate__fadeIn animate__faster animate__fadeOut" style="width:auto;pointer-events:auto;display:inline-flex;white-space:pre-wrap;opacity:1;">
-            //             <button class="delete"></button>Successfully registered an account.
-            //         </div>
-            //     </div>
-            // )
-
-            notify("success", "Successfully registered an account.")
-
-            // bulmaToast.toast({
-            //     message: 'Successfully registered an account.',
-            //     type: 'is-success',
-            //     dismissible: true,
-            //     duration: 2000
-            // })
+            notify("success", "Successfully logged in.")
 
             if (!router.query.redirect) {
                 return router.push('/')
@@ -77,18 +56,18 @@ function Register() {
     return (
         <>
             <Head>
-                <title>Register : Femto Uploader</title>
+                <title>Login : Femto Uploader</title>
             </Head>
             <DashboardLayout active="register">
                 <div className="main">
                     <nav className="breadcrumb" aria-label="breadcrumbs">
                         <ul>
                             <li><Link href='/'><a>Femto</a></Link></li>
-                            <li className="is-active"><a href="/register" aria-current="page">Register</a></li>
+                            <li className="is-active"><a href="/login" aria-current="page">Login</a></li>
                         </ul>
                     </nav>
                     <h1 className="title">
-                        Register
+                        Login
                     </h1>
 
                     <div style={{ height: "1rem" }} />
@@ -111,23 +90,15 @@ function Register() {
                         {error}
                     </div>}
 
-                    <label class="label">Username*</label>
+                    <label class="label">Username / Email</label>
                     <p class="control">
-                        <input class="input" type="text" onChange={e => setUsername(e.target.value)} value={username} placeholder="femto" />
-                    </p>
-
-                    <div style={{ height: "1rem" }} />
-
-                    <label class="label">Email</label>
-                    <p class="control">
-                        Registration using email is optional and will only be used for account recovery.
-                        <input class="input" type="email" onChange={e => setEmail(e.target.value)} value={email} placeholder="contact@femto.dev" />
+                        <input class="input" type="text" onChange={e => setUserId(e.target.value)} value={userId} placeholder="femto" />
                     </p>
 
 
                     <div style={{ height: "1rem" }} />
 
-                    <label class="label">Password*</label>
+                    <label class="label">Password</label>
                     <p class="control">
                         <input class="input" type="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="password" />
                     </p>
@@ -139,8 +110,8 @@ function Register() {
                     <div className="field is-grouped">
                         <div className="control">
                             <button className="button is-link is-success" onClick={() => {
-                                register()
-                            }}>Register</button>
+                                login()
+                            }}>Login</button>
                         </div>
                     </div>
                 </div>
@@ -149,4 +120,4 @@ function Register() {
     )
 }
 
-export default Register
+export default Login

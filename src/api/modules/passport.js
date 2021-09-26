@@ -26,7 +26,7 @@ export function setupPassport() {
             const { id, username } = profile
 
             const [user, created] = await User.findOrCreate({
-                where: { id },
+                where: { githubId: id },
                 defaults: { username }
             })
 

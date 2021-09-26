@@ -49,7 +49,7 @@ function DashboardLayout({ children, active }) {
                                     </p>
                                     <ul className="menu-list">
                                         <li><Link href={`/register?redirect=/${active}`}><a>Register</a></Link></li>
-                                        <li><Link href={`/auth/github?redirect=/${active}`}><a>Login</a></Link></li>
+                                        <li><Link href={`/login?redirect=/${active}`}><a>Login</a></Link></li>
                                     </ul>
                                 </> : null
                             }
