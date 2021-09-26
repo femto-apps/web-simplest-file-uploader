@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid'
 import config from 'config'
 import { join } from 'path'
 import multer from 'multer'
+import fs from 'fs'
 
 import Route from '../../structures/Route.js'
 import Utils from '../../utils/Utils.js'
