@@ -81,7 +81,22 @@ function Home(props) {
                     file.short = req.data.short
                     forceUpdate()
                 }).catch(err => {
-                    file.error = err
+                    console.log('error here', err)
+
+                    if (err.response) {
+                        file.error = { message: err.response.data.error }
+                    } else if (err.request) {
+                        file.error = {
+                            message: "Error: Couldn't reach server."
+                        }
+                    } else {
+                        file.error = {
+                            message: "An unknown error occurred."
+                        }
+                    }
+
+                    console.log("error found", file.error)
+
                     forceUpdate()
                 })
         })

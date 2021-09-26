@@ -74,11 +74,17 @@ export default class uploadPost extends Route {
         const error = await new Promise(resolve => fileMulter(req, res, err => resolve(err)))
 
         if (error) {
-            throw error
+            return res.status(415).send({
+                success: false,
+                error: error
+            })
         }
 
         if (!req.file) {
-            return res.status(415).send("Invalid file.")
+            return res.status(415).send({
+                success: false,
+                error: "Invalid file."
+            })
         }
 
         const expiry = Utils.normaliseExpiration(req.body.expirationTime)
@@ -107,13 +113,12 @@ export default class uploadPost extends Route {
                 apiKey: config.virustotal.key
             })
 
-            console.log(scanResults)
-
             item.virusTotalID = scanResults.data.id
             await item.save()
         }
 
         return res.json({
+            success: true,
             message: 'Successfully uploaded the file.',
             name: req.file.originalname,
             size: req.file.size,
