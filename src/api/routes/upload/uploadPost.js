@@ -107,6 +107,8 @@ export default class uploadPost extends Route {
                 apiKey: config.virustotal.key
             })
 
+            console.log(scanResults)
+
             item.virusTotalID = scanResults.data.id
             await item.save()
         }
