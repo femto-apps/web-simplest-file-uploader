@@ -34,7 +34,10 @@ export default (sequelize, Sequelize) => {
         password: {
             type: DataTypes.STRING,
             unique: false,
-            allowNull: false
+            allowNull: false,
+            defaultValue: () => {
+                return ""
+            }
         },
         apikey: {
             type: DataTypes.STRING,
